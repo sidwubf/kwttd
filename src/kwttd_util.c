@@ -1,6 +1,7 @@
 #include "kwttd_util.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 int
 kwttd_strcmp(char *a, char *b) {
@@ -27,5 +28,31 @@ char
     r = (char *) malloc(limit + 1);
     strncpy(r, &s[offset], limit);
     return r;
+}
+
+char
+*kwttd_strjoin(char *buf, char *delim, ...) {
+    char *p, *res, *d;
+    int i = 0;
+    va_list ap;
+    va_start(ap, delim);
+    res = buf;
+    p = va_arg(ap, char *);
+    while(p)
+    {
+        while(*res++ = *p++) 
+            /* do nothing */;
+        res--;
+        if(p = va_arg(ap, char *))
+        {
+            d = delim;
+            while(*res++ = *d++) 
+                /* do nothing */;
+            res--;
+        }
+    }
+    *res = '\0';
+    va_end(ap);
+    return buf;
 }
 
