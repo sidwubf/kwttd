@@ -1,5 +1,4 @@
 #include "kwttd_network.h"
-#include "kwttd_utils.h"
 #include <stdio.h>      /* printf fprintf */
 #include <stdlib.h>  /* exit */
 #include <netinet/in.h> /* sockaddr_in */
@@ -27,10 +26,9 @@ main(int argc, char *argv[]) {
     broadcastIp = get_broadcast_ip();
     printf("broadcast:%s\n", broadcastIp);
     broadcastPort = atoi(argv[1]);
-	startMac = argv[2];
-	kwttd_strjoin(sendString, "001 NOTIFY: WHO'S MAC STARTS WITH ", startMac, NULL);
+	sendString = argv[2];
 	printf("send string: %s\n", sendString);
-	exit(1);
+
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
 		fprintf(stderr, "socket failed\n");
 		exit(1);
