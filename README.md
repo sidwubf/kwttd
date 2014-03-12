@@ -1,17 +1,17 @@
 kwttd
 =====
 
-base64
-Protocol:
+
+Protocol:(base64)
 
 - app
-1 NOTIFY: WHO'S MAC STARTS WITH xxxx
-2 REQUIRE: xxxyyy TURN ON
-           xxxyyy TURN OFF
-3 GET: xxxyyy PLEASE GIVE ME YOUR INFOMATION
+** NOTIFY: WHO'S MAC STARTS WITH xxxx
+** REQUIRE: xxxyyy TURN ON
+            xxxyyy TURN OFF
+** GET: xxxyyy PLEASE GIVE ME YOUR INFOMATION
 
 - switch
-1 REPLY: MY MAC STARTS WITH xxx AND ENDS WITH yyy
-2 REPLY: DONE TURN ON
-         DONE TURN OFF
-3 REPLY: MY INFORMATION IS ...
+** REPLY: MY MAC STARTS WITH xxx AND ENDS WITH yyy
+** REPLY: DONE TURN ON
+          DONE TURN OFF
+** REPLY: MY INFORMATION IS ...
