@@ -6,12 +6,12 @@ kwttd
 
 app
 * NOTIFY: WHO'S MAC STARTS WITH xxxx
-* REQUIRE: xxxyyy TURN ON<br/>
-&nbsp;&nbsp;           xxxyyy TURN OFF
+* REQUIRE: xxxyyy TURN ON
+* REQUIRE: xxxyyy TURN OFF
 * GET: xxxyyy PLEASE GIVE ME YOUR INFOMATION
 
 switch
 * REPLY: MY MAC STARTS WITH xxx AND ENDS WITH yyy
-* REPLY: DONE TURN ON<br/>
-         DONE TURN OFF
+* REPLY: DONE TURN ON
+* REPLY: DONE TURN OFF
 * REPLY: MY INFORMATION IS ...
