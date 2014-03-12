@@ -25,7 +25,7 @@ main(int argc, char *argv[]) {
         exit(1);
     }
 
-    if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+    if ((sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
         fprintf(stderr, "socket failed\n");
         exit(1);
     }
