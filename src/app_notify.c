@@ -15,20 +15,21 @@ main(int argc, char *argv[]) {
     unsigned short broadcastPort;     /* Server port */
 	char *startMac;
     char *sendString;                 /* String to broadcast */
+	char *mac;
     int broadcastPermission;          /* Socket opt to set permission to broadcast */
     unsigned int sendStringLen;       /* Length of string to broadcast */
 
     if (argc < 3) {
-        fprintf(stderr, "Usage:  %s <Port> <Message>\n", argv[0]);
+        fprintf(stderr, "Usage:  %s <Port> <Mac>\n", argv[0]);
         exit(1);
     }
 
     broadcastIp = get_broadcast_ip();
     printf("broadcast:%s\n", broadcastIp);
     broadcastPort = atoi(argv[1]);
-	sendString = argv[2];
-	//startMac = &argv[2];
-	//sendString = strcat("001 NOTIFY: WHO'S MAC STARTS WITH ", startMac);
+	mac = argv[2];
+	strcpy(sendString, "001 NOTIFY: WHO'S MAC STARTS WITH ");
+	strcat(sendString, mac);
 	printf("send string: %s\n", sendString);
 
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {

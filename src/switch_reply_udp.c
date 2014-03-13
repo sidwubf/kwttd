@@ -80,24 +80,4 @@ main(int argc, char *argv[]) {
 	printf("Ip Address: %s\n", inet_ntoa(switchAddr.sin_addr));
 	close(sockfd);
 	exit(0);
-
-	/*
-    char *sw_no;
-    sw_no = kwttd_strsub(argv[1], 12, SWITCH_NO_LEN);
-    if (kwttd_strcmp(sw_no, argv[0]) > 0) {
-        char *resp;
-        resp = strcat(sw_no, " is me.");
-        // NOxxxx is me.
-        printf("My switch no is: %s\n", sw_no);
-        if (sendto(sock, resp, sizeof(resp), 0,
-                   (struct sockaddr *) &clientAddr, sizeof(clientAddr))) {
-            printf("%s\n", resp);
-        }
-    } else {
-        printf("My switch no is not: %s\n", sw_no);
-    }
-
-    close(sock);
-	exit(0);
-	*/
 }
