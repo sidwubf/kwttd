@@ -94,12 +94,11 @@ main(int argc, char *argv[]) {
 	    exit(1);	
 	}
 	
-	printf("Resp: %s\n", respString);
 	respStringLen = strlen(respString);
 	if (send(appSock, respString, respStringLen, 0) != respStringLen) {
 		fprintf(stderr, "send failed\n");
 		exit(1);
 	}
-	
+	printf("Resp: %s\n", respString);
 	exit(0);
 }

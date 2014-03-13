@@ -77,7 +77,7 @@ main(int argc, char *argv[]) {
 		exit(1);
 	}
 	
-	if ((recvStringLen = recv(sock, recvString, 30, 0)) <= 0) {
+	if ((recvStringLen = recv(sock, recvString, 30, 0)) < 0) {
 		fprintf(stderr, "recv failed\n");
 		exit(1);
 	}
