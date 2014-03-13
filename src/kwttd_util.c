@@ -30,3 +30,10 @@ char
     return r;
 }
 
+int
+kwttd_strstartwith(const char *pre, const char *str) {
+    size_t lenpre = strlen(pre),
+           lenstr = strlen(str);
+    return lenstr < lenpre ? -1 : strncmp(pre, str, lenpre);
+}
+

@@ -19,7 +19,7 @@ main(int argc, char *argv[]) {
     unsigned int sendStringLen;       /* Length of string to broadcast */
 
     if (argc < 3) {
-        fprintf(stderr, "Usage:  %s <Port> <MAC>\n", argv[0]);
+        fprintf(stderr, "Usage:  %s <Port> <Message>\n", argv[0]);
         exit(1);
     }
 
@@ -27,6 +27,8 @@ main(int argc, char *argv[]) {
     printf("broadcast:%s\n", broadcastIp);
     broadcastPort = atoi(argv[1]);
 	sendString = argv[2];
+	//startMac = &argv[2];
+	//sendString = strcat("001 NOTIFY: WHO'S MAC STARTS WITH ", startMac);
 	printf("send string: %s\n", sendString);
 
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {

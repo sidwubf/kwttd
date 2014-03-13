@@ -1,4 +1,4 @@
-all: notify recv
+all: notify reply_udp
 
 notify: app_notify.o kwttd_network.o
 	gcc app_notify.o kwttd_network.o -o notify
@@ -9,14 +9,14 @@ app_notify.o: app_notify.c
 kwttd_network.o: kwttd_network.c
 	gcc -c kwttd_network.c
 
-recv: responce.o kwttd_util.o
-	gcc responce.o kwttd_util.o -o recv
+reply_udp: switch_reply_udp.o kwttd_util.o
+	gcc switch_reply_udp.o kwttd_util.o -o reply_udp
 
-responce.o: responce.c
-	gcc -c responce.c
+switch_reply_udp.o: switch_reply_udp.c
+	gcc -c switch_reply_udp.c
 
 kwttd_util.o: kwttd_util.c
 	gcc -c kwttd_util.c
 
 clean:
-	rm -rf *o *~ notify recv
+	rm -rf *o *~ notify reply_udp
