@@ -27,9 +27,10 @@ main(int argc, char *argv[]) {
     broadcastIp = get_broadcast_ip();
     printf("broadcast:%s\n", broadcastIp);
     broadcastPort = atoi(argv[1]);
-	mac = argv[2];
-	strcpy(sendString, "001 NOTIFY: WHO'S MAC STARTS WITH ");
-	strcat(sendString, mac);
+    sendString = argv[2];
+	//mac = argv[2];
+	//strcpy(sendString, "001 NOTIFY: WHO'S MAC STARTS WITH ");
+	//strcat(sendString, mac);
 	printf("send string: %s\n", sendString);
 
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {

@@ -65,10 +65,10 @@ main(int argc, char *argv[]) {
 		exit(1);
 	}
 		
-	char recvString[30];
+	char recvString[32];
 	int recvStringLen;
 		
-	if ((recvStringLen = recv(appSock, recvString, 30, 0)) < 0) {
+	if ((recvStringLen = recv(appSock, recvString, 32, 0)) < 0) {
 		fprintf(stderr, "recv failed\n");
 		exit(1);
 	}
