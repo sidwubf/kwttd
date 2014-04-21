@@ -39,5 +39,10 @@ main(int argc, char *argv[]) {
 
   printf("client ip: %s, client port: %d\n", inet_ntoa(cliaddr.sin_addr), ntohs(cliaddr.sin_port));
 
+  if (sendto(sock, "hello from server", 17, 0, (struct sockaddr *) (&cliaddr), sizeof(cliaddr)) == -1) {
+    fprintf(stderr, "sendto failed\n");
+    exit(1);
+  }
+
   exit(0);
 }

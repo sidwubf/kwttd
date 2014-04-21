@@ -48,5 +48,14 @@ main(int argc, char *argv[]) {
 
   printf("send success\n");
 
+  char recvstr[50];
+  seraddrlen = sizeof(serAddr);
+  if ((n = recvfrom(sock, recvstr, 50, 0, (struct sockaddr *) &serAddr, &seraddrlen)) < 0) {
+    fprintf(stderr, "recvfrom failed\n");
+    exit(1);
+  }
+
+  printf("receive success: %s\n", recvstr);
+
   exit(0);
 }
