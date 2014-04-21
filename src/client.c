@@ -50,14 +50,13 @@ main(int argc, char *argv[]) {
 
   int n;
   char recvstr[50];
-  socklen_t seraddrlen;
-  seraddrlen = sizeof(serAddr);
-  if ((n = recvfrom(sock, recvstr, 50, 0, (struct sockaddr *) &serAddr, &seraddrlen)) < 0) {
+  if ((n = recvfrom(sock, &recvstr, 50, 0, NULL, NULL)) < 0) {
     fprintf(stderr, "recvfrom failed\n");
     exit(1);
   }
 
   printf("receive success: %s\n", recvstr);
+  printf("from %s:%d\n", inet_ntoa(serAddr.sin_addr), ntohs(serAddr.sin_port));
 
   exit(0);
 }
