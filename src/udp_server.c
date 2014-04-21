@@ -91,20 +91,6 @@ int main(int argc, char **argv) {
       error("ERROR in recvfrom");
 
     /*
-     * gethostbyaddr: determine who sent the datagram
-     */
-    hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr,
-			  sizeof(clientaddr.sin_addr.s_addr), AF_INET);
-    if (hostp == NULL)
-      error("ERROR on gethostbyaddr");
-    hostaddrp = inet_ntoa(clientaddr.sin_addr);
-    if (hostaddrp == NULL)
-      error("ERROR on inet_ntoa\n");
-    printf("server received datagram from %s (%s)\n",
-	   hostp->h_name, hostaddrp);
-    printf("server received %zu/%d bytes: %s\n", strlen(buf), n, buf);
-
-    /*
      * sendto: echo the input back to the client
      */
     n = sendto(sockfd, buf, strlen(buf), 0,
