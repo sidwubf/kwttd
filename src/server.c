@@ -37,7 +37,7 @@ main(int argc, char *argv[]) {
     exit(1);
   }
 
-  printf("client ip: %s, client port: %d\n", inet_ntoa(cliaddr.sin_addr), htonl(cliaddr.sin_port));
+  printf("client ip: %s, client port: %d\n", inet_ntoa(cliaddr.sin_addr), ntohs(cliaddr.sin_port));
 
   exit(0);
 }
