@@ -28,7 +28,8 @@ main(int argc, char *argv[]) {
 
   memset(&cliAddr, 0, sizeof(cliAddr));
   cliAddr.sin_family = AF_INET;
-  cliAddr.sin_addr.s_addr = htonl(INADDR_ANY);//inet_addr("127.0.0.1");
+  //cliAddr.sin_addr.s_addr = inet_addr("192.168.1.213");
+  cliAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   cliAddr.sin_port = htons(21152);
 
   if (bind(sock, (struct sockaddr *) &cliAddr, sizeof(struct sockaddr)) < 0) {
