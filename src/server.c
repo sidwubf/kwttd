@@ -44,5 +44,7 @@ main(int argc, char *argv[]) {
     exit(1);
   }
 
+  printf("send success\n");
+
   exit(0);
 }
