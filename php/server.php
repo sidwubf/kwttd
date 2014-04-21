@@ -1,15 +1,8 @@
 <?php
 
-<<<<<<< HEAD:php/server.php
 $host = '0.0.0.0';
 //$host = '121.52.238.170';
 $port = 21151;
-=======
-//$host = '58.247.90.36';
-$host = '0.0.0.0';
-//$host = '10.100.0.115';
-$port = 21152;
->>>>>>> test:src/php/server.php
 
 $socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP) or die("Could not create
 socket\n");
