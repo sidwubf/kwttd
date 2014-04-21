@@ -18,17 +18,17 @@ main(int argc, char *argv[]) {
   unsigned short server_port;
   struct sockaddr_in cliAddr, serAddr;
 
-  if ((sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)  {
+  if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0)  {
     fprintf(stderr, "socket failed\n");
     exit(1);
   }
 
-  server_ip = argv[2];
-  server_port = atoi(argv[3]);
+  server_ip = argv[1];
+  server_port = atoi(argv[2]);
 
   memset(&cliAddr, 0, sizeof(cliAddr));
   cliAddr.sin_family = AF_INET;
-  cliAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+  cliAddr.sin_addr.s_addr = htonl(INADDR_ANY);//inet_addr("127.0.0.1");
   cliAddr.sin_port = htons(21152);
 
   if (bind(sock, (struct sockaddr *) &cliAddr, sizeof(struct sockaddr)) < 0) {
@@ -45,6 +45,8 @@ main(int argc, char *argv[]) {
     fprintf(stderr, "sendto failed\n");
     exit(1);
   }
+
+  printf("send success\n");
 
   exit(0);
 }
