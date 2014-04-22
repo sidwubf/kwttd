@@ -45,4 +45,4 @@ test_server.o: server.c
 	gcc -c server.c
 
 clean:
-	rm -rf *o *~ notify reply_udp require reply_tcp
+	rm -rf *o *~ notify reply_udp require reply_tcp test_client test_server
