@@ -56,6 +56,7 @@ main(int argc, char *argv[]) {
     exit(1);
   }
 
+  recvstr[n] = 0;
   printf("receive success: %s\n", recvstr);
   printf("from %s:%d\n", inet_ntoa(serAddr.sin_addr), ntohs(serAddr.sin_port));
 
