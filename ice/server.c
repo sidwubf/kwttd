@@ -57,7 +57,9 @@ int main(int argc, char *argv[])
         if (sendto(sock, echoBuffer, recvMsgSize, 0,
              (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
             DieWithError("sendto() sent a different number of bytes than expected");
-
+	if (sendto(sock, echoBuffer, recvMsgSize, 0,
+             (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
+            DieWithError("sendto() sent a different number of bytes than expected");
 	    printf("done sendto\n");
     }
     /* NOT REACHED */
