@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
     if ((argc < 3) || (argc > 5))    /* Test for correct number of arguments */
     {
-        fprintf(stderr,"Usage: %s <Server IP> <Echo Word> [<Echo Port>]\n", argv[0]);
+        fprintf(stderr,"Usage: %s <Server IP> <Echo Word> <Echo Port> <Port>\n", argv[0]);
         exit(1);
     }
 
