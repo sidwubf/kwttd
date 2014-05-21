@@ -6,6 +6,7 @@
 #include <unistd.h>     /* for close() */
 #include <sys/types.h>
 #include <netdb.h>
+#include <time.h>
 
 #define ECHOMAX 255     /* Longest string to echo */
 
@@ -63,30 +64,17 @@ int main(int argc, char *argv[])
     echoServAddr.sin_addr.s_addr = inet_addr(servIP);  /* Server IP address */
     echoServAddr.sin_port   = htons(echoServPort);     /* Server port */
 
+    time_t currTime;
+
     for ( ; ; ) {
         /* Send the string to the server */
         if (sendto(sock, echoString, echoStringLen, 0, (struct sockaddr *)
                    &echoServAddr, sizeof(echoServAddr)) != echoStringLen)
             DieWithError("sendto() sent a different number of bytes than expected");
 
-        /* Recv a response */
-        fromSize = sizeof(fromAddr);
-        if ((respStringLen = recvfrom(sock, echoBuffer, ECHOMAX, 0,
-             (struct sockaddr *) &fromAddr, &fromSize)) <= 0) {
-            echoBuffer[respStringLen] = '\0';
-            printf("%s\n", echoBuffer);
-            DieWithError("recvfrom() failed");
-        }
-
-        if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
-        {
-            fprintf(stderr,"Error: received a packet from unknown source.\n");
-            exit(1);
-        }
-
-        /* null-terminate the received data */
-        echoBuffer[respStringLen] = '\0';
-        printf("Received: %s\n", echoBuffer);    /* Print the echoed arg */
+        currTime = time(NULL);
+        printf("%s\n", ctime(&currTime));
+        sleep(1);
     }
 
     close(sock);
