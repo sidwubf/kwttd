@@ -22,3 +22,5 @@
 
 src/recv
 src/send
+ice/client
+ice/server
