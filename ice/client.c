@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     unsigned short cliPort;
     unsigned int fromSize;           /* In-out of address size for recvfrom() */
     char *servHostname;              /* IP address of server */
-    char servIP[100];
+    char *servIP;
     char *echoString;                /* String to send to echo server */
     char echoBuffer[ECHOMAX+1];      /* Buffer for receiving echoed string */
     int echoStringLen;               /* Length of string to echo */
