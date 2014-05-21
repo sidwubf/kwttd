@@ -31,12 +31,13 @@ int main(int argc, char *argv[])
 
     if ((argc < 3) || (argc > 5))    /* Test for correct number of arguments */
     {
-        fprintf(stderr,"Usage: %s <Server Hostname> <Echo Word> [<Echo Port>]\n", argv[0]);
+        fprintf(stderr,"Usage: %s <Server IP> <Echo Word> [<Echo Port>]\n", argv[0]);
         exit(1);
     }
 
-    servHostname = argv[1];
-    hostname_to_ip(servHostname, servIP);
+    //servHostname = argv[1];
+    //hostname_to_ip(servHostname, servIP);
+    servIP = argv[1];
     echoString = argv[2];       /* Second arg: string to echo */
 
     if ((echoStringLen = strlen(echoString)) > ECHOMAX)  /* Check input length */
