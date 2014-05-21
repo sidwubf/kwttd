@@ -6,6 +6,7 @@
 #include <unistd.h>     /* for close() */
 #include <sys/types.h>
 #include <netdb.h>
+#include <time.h>
 
 #define ECHOMAX 255     /* Longest string to echo */
 
@@ -68,6 +69,9 @@ int main(int argc, char *argv[])
                &echoServAddr, sizeof(echoServAddr)) != echoStringLen)
         DieWithError("sendto() sent a different number of bytes than expected");
 
+    time_t now;
+    struct tm *tm;
+
     for ( ; ; ) {
         /* Recv a response */
         fromSize = sizeof(fromAddr);
@@ -86,7 +90,17 @@ int main(int argc, char *argv[])
 
         /* null-terminate the received data */
         echoBuffer[respStringLen] = '\0';
-        printf("Received: %s\n", echoBuffer);    /* Print the echoed arg */
+        printf("Received: %s ", echoBuffer);    /* Print the echoed arg */
+
+        now = time(0);
+        if ((tm = localtime (&now)) == NULL) {
+            printf ("Error extracting time stuff\n");
+            return 1;
+        }
+
+        printf ("%04d-%02d-%02d %02d:%02d:%02d\n",
+        tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday,
+        tm->tm_hour, tm->tm_min, tm->tm_sec);
     }
 
     close(sock);
