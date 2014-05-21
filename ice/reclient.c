@@ -29,8 +29,9 @@ int main(int argc, char *argv[])
     char echoBuffer[ECHOMAX+1];      /* Buffer for receiving echoed string */
     int echoStringLen;               /* Length of string to echo */
     int respStringLen;               /* Length of received response */
+    int sleepSeconds;
 
-    if ((argc < 3) || (argc > 5))    /* Test for correct number of arguments */
+    if ((argc < 3) || (argc > 6))    /* Test for correct number of arguments */
     {
         fprintf(stderr,"Usage: %s <Server IP> <Echo Word> [<Echo Port>]\n", argv[0]);
         exit(1);
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
 
     echoServPort = atoi(argv[3]);  /* Use given port, if any */
     cliPort = atoi(argv[4]);
+    sleepSeconds = atoi(argv[5]);
 
     /* Create a datagram/UDP socket */
     if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
@@ -64,7 +66,8 @@ int main(int argc, char *argv[])
     echoServAddr.sin_addr.s_addr = inet_addr(servIP);  /* Server IP address */
     echoServAddr.sin_port   = htons(echoServPort);     /* Server port */
 
-    time_t currTime;
+    time_t now;
+    struct tm *tm;
 
     for ( ; ; ) {
         /* Send the string to the server */
@@ -72,9 +75,17 @@ int main(int argc, char *argv[])
                    &echoServAddr, sizeof(echoServAddr)) != echoStringLen)
             DieWithError("sendto() sent a different number of bytes than expected");
 
-        currTime = time(NULL);
-        printf("%s\n", ctime(&currTime));
-        sleep(1);
+        now = time(0);
+        if ((tm = localtime (&now)) == NULL) {
+            printf ("Error extracting time stuff\n");
+            return 1;
+        }
+
+        printf ("%04d-%02d-%02d %02d:%02d:%02d\n",
+        tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday,
+        tm->tm_hour, tm->tm_min, tm->tm_sec);
+
+        sleep(sleepSeconds);
     }
 
     close(sock);
