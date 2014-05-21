@@ -72,8 +72,11 @@ int main(int argc, char *argv[])
         /* Recv a response */
         fromSize = sizeof(fromAddr);
         if ((respStringLen = recvfrom(sock, echoBuffer, ECHOMAX, 0,
-             (struct sockaddr *) &fromAddr, &fromSize)) != echoStringLen)
+             (struct sockaddr *) &fromAddr, &fromSize)) != echoStringLen) {
+            echoBuffer[respStringLen] = '\0';
+            printf("%s\n", echoBuffer);
             DieWithError("recvfrom() failed");
+        }
 
         if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
         {
