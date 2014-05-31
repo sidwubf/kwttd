@@ -16,7 +16,7 @@ loop(Socket) ->
 	receive
 		{udp, Socket, Host, Port, Bin} ->
 			io:format("received:~p Host:~p Port:~p~n", [Bin, Host, Port]),
-			file:write_file(?ENDPOIONT_LOG, io_lib:file("~p,~p,~p\n", [Bin, Host, Port])).
+			file:write_file(?ENDPOINT_LOG, io_lib:file("~p,~p,~p\n", [Bin, Host, Port])),
 			gen_udp:send(Socket, Host, Port, Bin),
 			loop(Socket)
 	end.
