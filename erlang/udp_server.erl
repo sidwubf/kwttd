@@ -13,7 +13,7 @@ loop(Socket) ->
 	inet:setopts(Socket, [{active, once}]),
 	receive
 		{udp, Socket, Host, Port, Bin} ->
-			io:format("received:~p~n", [Bin]),
+			io:format("received:~p~p~n", [Bin, Host]),
 			gen_udp:send(Socket, Host, Port, Bin),
 			loop(Socket)
 	end.
